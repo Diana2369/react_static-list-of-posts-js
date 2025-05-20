@@ -2,16 +2,14 @@ import React from 'react';
 import { CommentInfo } from '../CommentInfo/CommentInfo';
 import './CommentList.scss';
 
-export const CommentList = ({ comments }) => {
-  if (!comments.length) {
-    return <b data-cy="NoCommentsMessage">No comments yet</b>;
-  }
-
-  return (
-    <div className="CommentList">
-      {comments.map(comment => (
+export const CommentList = ({ comments }) => (
+  <div className="CommentList">
+    {comments.length > 0 ? (
+      comments.map(comment => (
         <CommentInfo key={comment.id} comment={comment} />
-      ))}
-    </div>
-  );
-};
+      ))
+    ) : (
+      <b data-cy="NoCommentsMessage">No comments yet</b>
+    )}
+  </div>
+);
